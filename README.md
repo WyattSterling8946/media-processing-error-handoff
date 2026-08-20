@@ -71,3 +71,7 @@ The code stays simple on purpose — here's what to set up before going live: Th
 
 **Media Processing Error Handoff: Observability**
 - **Media Processing Error Handoff:** Capture on the server (`POST /v1/errors/capture`); scrub PII before sending. Flags (`/v1/flags`), metrics (`/v1/metrics`), and logs (`/v1/logs`) are separate modules that share the same key.
+
+## Further reading
+
+- [Scheduled Import Monitoring — Polling Recent Unresolved Errors Without Alert Noise](docs/scheduled-import-monitoring-polling-recent-unreso-15i6ff.md)
