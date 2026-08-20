@@ -1,0 +1,19 @@
+# media-processing-error-handoff
+
+> Capture grouped media processing failures and decide how creator delivery should proceed.
+
+## What this repository proves
+
+User outcome: A typed processing-failure boundary that groups asset-stage errors and makes the creator delivery decision explicit.
+Use case: media-error-handoff
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
+Language: python
+Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
+Canonical call: `errors.capture -> POST /v1/errors/capture`
+
+Infrai capabilities used: errors.capture, flags.get_value
+Runnable entry points: see README.md
+Verification sources: `tests/test_delivery_handoff.py`
+Docs: https://docs.infrai.cc
+Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt

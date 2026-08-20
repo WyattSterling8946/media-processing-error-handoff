@@ -1,0 +1,1 @@
+"""Media error capture example."""
