@@ -74,4 +74,5 @@ The code stays simple on purpose — here's what to set up before going live: Th
 
 ## Further reading
 
+- [How to Build a Next.js Feature Flag Admin API — Safe Rollbacks](docs/how-to-build-a-next-js-feature-flag-admin-api-saf-1ofjhb.md)
 - [Scheduled Import Monitoring — Polling Recent Unresolved Errors Without Alert Noise](docs/scheduled-import-monitoring-polling-recent-unreso-15i6ff.md)
