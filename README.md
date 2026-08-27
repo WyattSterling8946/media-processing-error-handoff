@@ -74,5 +74,6 @@ The code stays simple on purpose — here's what to set up before going live: Th
 
 ## Further reading
 
+- [2026 Error Tracking API: Choose FastAPI, Django, Rails — Grouped Events vs Full Monitoring](docs/2026-error-tracking-api-choose-fastapi-django-rai-19381r.md)
 - [How to Build a Next.js Feature Flag Admin API — Safe Rollbacks](docs/how-to-build-a-next-js-feature-flag-admin-api-saf-1ofjhb.md)
 - [Scheduled Import Monitoring — Polling Recent Unresolved Errors Without Alert Noise](docs/scheduled-import-monitoring-polling-recent-unreso-15i6ff.md)
