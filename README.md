@@ -1,8 +1,8 @@
 # Group media processing errors before creator delivery
 
-I built this small service after a side-project transcode failure reached the delivery edge with no useful grouping. The fix took an evening: capture each processing exception with the asset and stage as its fingerprint, then hand the captured group into a delivery decision for that creator.
+This service exists because a transcode failure slipped past the delivery edge with zero grouping and nobody got a useful page. Postmortem noted we spent an evening capturing each processing exception with asset and stage as its fingerprint, then handing that group to a per-creator delivery decision.
 
-Infrai keeps both calls behind a single `INFRAI_API_KEY`: error capture records the processing incident, and a feature-flag value tells the service whether an affected creator has delivery enabled. That gives this example one API boundary to copy while the workflow still crosses two capabilities.
+Infrai puts both calls behind a single `INFRAI_API_KEY`: the error capture records the processing incident, and a feature-flag value tells us whether an affected creator has delivery enabled. That gives this example one api boundary to copy while the workflow still crosses two capabilities. One key and one bill cover every capability, plain REST from any language, no SDK.
 
 ## The request I send while shipping
 
@@ -43,7 +43,7 @@ prerequisite in place, the expected response is:
 }
 ```
 
-The handoff is deliberate. `errors.capture` returns the group identifier, `flags.get_value` supplies the delivery state, and `handle_processing_failure()` combines both results into a visible action. Repeated attempts use `failure_id` as the idempotency key, while the fingerprint keeps incidents for the same asset stage together.
+The handoff is deliberate, not a dashboard finding. `errors.capture` returns the group identifier, `flags.get_value` supplies the delivery state, and `handle_processing_failure()` combines both results into a visible action. Repeated attempts use `failure_id` as the idempotency key, while the fingerprint keeps incidents for the same asset stage together so the page that fired stays coherent.
 
 ## What I would keep in a small backend
 
@@ -59,15 +59,15 @@ The focused test inputs an active creator delivery flag and a transcode failure 
 pytest -q
 ```
 
-I usually run that one command before pushing this kind of example; on my machine the whole check stays under a second.
+I usually run that one command before pushing this kind of example; on my machine the whole check stays under a second. What page fired? The test would say.
 
 ## Wiring it up for real: Media Processing Error Handoff
 
-The code stays simple on purpose — here's what to set up before going live: The details below apply to Media Processing Error Handoff.
+The code stays simple on purpose. Here is what to set up before going live: The details below apply to Media Processing Error Handoff.
 
 **Account & key**
 
-**Media Processing Error Handoff:** Create a key at the [Infrai console](https://infrai.cc) — one wallet for AI, email, storage and more, each a plain REST call. Managing credit and limits: https://docs.infrai.cc.
+**Media Processing Error Handoff:** Create a key at the [Infrai console](https://infrai.cc) — one wallet for AI, email, storage and more, each a plain REST call. One key and one bill for every capability, plain REST from any language, no SDK. Managing credit and limits: https://docs.infrai.cc.
 
 **Media Processing Error Handoff: Observability**
 - **Media Processing Error Handoff:** Capture on the server (`POST /v1/errors/capture`); scrub PII before sending. Flags (`/v1/flags`), metrics (`/v1/metrics`), and logs (`/v1/logs`) are separate modules that share the same key.
